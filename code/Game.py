@@ -13,19 +13,22 @@ class Game:
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
 
     def run(self):
-
-
         while True:
             menu = Menu(self.window)
             menu_return = menu.run()
 
             if menu_return == MENU_OPTION[0]:
-                level = Level(self.window, 'Level1BG', menu_return)
+                level = Level(self.window, 'Level1Bg', menu_return)
                 level_return = level.run()
-            elif menu_return == MENU_OPTION[2]:
+                if level_return:
+                    level = Level(self.window, 'Level2Bg', menu_return)
+                    level_return = level.run()
+                    if level_return:
+                        level = Level(self.window, 'Level3Bg', menu_return)
+                        level_return = level.run()
+
+            elif menu_return == MENU_OPTION[1]:
                 pygame.quit()  # Close Window
                 quit()  # end pygame
             else:
                 pass
-
-
