@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import random
 import sys
 import pygame
@@ -54,7 +52,21 @@ class Level:
                 if not found_player:
                     return False
 
-            # printed text
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
+
+            # Death verification
+            found_player = any(isinstance(ent, Player) for ent in self.entity_list)
+            if not found_player:
+                pygame.mixer_music.stop()
+                return "DIED"
+
+            # Draws texts on the screen
+            self.window.blit(self.window, (0, 0))
+            for ent in self.entity_list:
+                self.window.blit(source=ent.surf, dest=ent.rect)
+
+            # Printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', (255, 255, 255), (10, 5))
             self.level_text(14, f'fps: {clock.get_fps():.0f}', (255, 255, 255), (10, WIN_HEIGHT - 15))
             pygame.display.flip()

@@ -1,7 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import pygame.key
-
 from code.Const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH
 from code.Entity import Entity
 
