@@ -26,6 +26,7 @@ class Level:
 
     def run(self, ):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
+        pygame.mixer_music.set_volume(0.3)
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
         while True:
@@ -55,8 +56,7 @@ class Level:
 
             # printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', (255, 255, 255), (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps():.0f}', (255, 255, 255), (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entidades: {len(self.entity_list)}', (255, 255, 255), (10, WIN_HEIGHT - 20))
+            self.level_text(14, f'fps: {clock.get_fps():.0f}', (255, 255, 255), (10, WIN_HEIGHT - 15))
             pygame.display.flip()
             # Collisions
             EntityMediator.verify_collision(entity_list=self.entity_list)
